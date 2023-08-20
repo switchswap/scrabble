@@ -1,12 +1,12 @@
 pub struct Tile {
     letter: char,
     usage: char,
-    points: u8,
+    points: u32,
 }
 
 // TODO: Make linter happy
 impl Tile {
-    pub fn new(letter: char, points: u8) -> Tile {
+    pub fn new(letter: char, points: u32) -> Tile {
         Tile {
             letter,
             usage: letter,
@@ -18,7 +18,7 @@ impl Tile {
         self.letter
     }
 
-    pub fn get_points(&self) -> u8 {
+    pub fn get_points(&self) -> u32 {
         self.points
     }
 
