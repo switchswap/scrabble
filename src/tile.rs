@@ -36,7 +36,7 @@ impl Tile {
 
 #[cfg(test)]
 mod tests {
-    use crate::Tile;
+    use crate::tile::Tile;
 
     #[test]
     fn test_get_letter() {
