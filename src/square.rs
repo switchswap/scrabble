@@ -54,6 +54,11 @@ impl Square {
         self.is_start
     }
 
+    /// Makes the tile the start tile
+    pub fn set_start(&mut self) {
+        self.is_start = true
+    }
+
     /// Returns tile score
     pub fn score(&self) -> u32 {
         match &self.tile {
