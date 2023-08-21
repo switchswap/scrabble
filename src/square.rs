@@ -1,4 +1,4 @@
-use crate::Tile;
+use crate::tile::Tile;
 
 pub struct Square {
     letter_multiplier: u32,

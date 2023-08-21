@@ -1,20 +1,14 @@
+use crate::tile::Tile;
+use rand::Rng;
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use rand::Rng;
-use crate::Tile;
 
 pub struct Bag {
     tiles: Vec<Tile>,
     letters: HashSet<char>,
     init_count: HashMap<char, u32>,
-    current_count: HashMap<char, u32>
-}
-
-struct TileInfo {
-    letter: char,
-    points: u32,
-    count: u32,
+    current_count: HashMap<char, u32>,
 }
 
 impl Bag {
@@ -31,33 +25,29 @@ impl Bag {
         let mut init_count: HashMap<char, u32> = HashMap::new();
         let mut current_count: HashMap<char, u32> = HashMap::new();
         for line in reader.lines() {
-            let tile_info = Self::parse_line(&(line.unwrap()));
-            for _ in 0..tile_info.count {
-                tiles.push(Tile::new(tile_info.letter, tile_info.points))
+            let (letter, points, count) = Self::parse_line(&(line.unwrap()));
+            for _ in 0..count {
+                tiles.push(Tile::new(letter, points))
             }
-            letters.insert(tile_info.letter);
-            init_count.insert(tile_info.letter, tile_info.count);
-            current_count.insert(tile_info.letter, tile_info.count);
+            letters.insert(letter);
+            init_count.insert(letter, count);
+            current_count.insert(letter, count);
         }
 
         Bag {
             tiles,
             letters,
             init_count,
-            current_count
+            current_count,
         }
     }
 
-    fn parse_line(line: &str) -> TileInfo {
+    fn parse_line(line: &str) -> (char, u32, u32) {
         let tile_info: Vec<&str> = line.split_whitespace().collect();
         let letter: char = tile_info[0].chars().next().unwrap();
         let points: u32 = tile_info[1].parse().unwrap();
         let count: u32 = tile_info[2].parse().unwrap();
-        TileInfo {
-            letter,
-            points,
-            count
-        }
+        (letter, points, count)
     }
 
     pub fn add_tile(&mut self, tile: Tile) {
@@ -105,5 +95,3 @@ impl Bag {
 mod tests {
     // TODO: Add tests
 }
-
-

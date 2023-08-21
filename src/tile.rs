@@ -4,13 +4,12 @@ pub struct Tile {
     points: u32,
 }
 
-// TODO: Make linter happy
 impl Tile {
     pub fn new(letter: char, points: u32) -> Tile {
         Tile {
             letter,
             usage: letter,
-            points
+            points,
         }
     }
 
