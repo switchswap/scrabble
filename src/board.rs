@@ -31,7 +31,8 @@ impl Board {
             .collect();
 
         // Assign the start square
-        if let Some(square) = grid.get_mut(cols * start_y + start_x) {
+        // Both indexes are subtracted by 1 to 0-index them
+        if let Some(square) = grid.get_mut(cols * (start_y - 1) + start_x - 1) {
             square.set_start();
         }
 
