@@ -64,15 +64,21 @@ impl Board {
         (x, y)
     }
 
-    /// Returns the square at the given coordinates
-    pub fn square_at(&mut self, x: usize, y: usize) -> Option<&mut Square> {
+    /// Returns the mutable square at the given coordinates
+    pub fn square_at(&self, x: usize, y: usize) -> Option<&Square> {
+        let index = y * self.cols + x;
+        self.grid.get(index)
+    }
+
+    /// Returns the mutable square at the given coordinates
+    pub fn square_at_mut(&mut self, x: usize, y: usize) -> Option<&mut Square> {
         let index = y * self.cols + x;
         self.grid.get_mut(index)
     }
 
-    /// Returns the start square
+    /// Returns the mutable start square
     pub fn start_square(&mut self) -> Option<&mut Square> {
-        self.square_at(self.start_x, self.start_y)
+        self.square_at_mut(self.start_x, self.start_y)
     }
 
     /// Returns the number of rows on the board
