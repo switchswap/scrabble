@@ -54,14 +54,11 @@ impl Player {
         true
     }
 
-    // TODO: This can have a faster runtime. Look at take_tiles.
     fn has_tile(&self, tile_letter: char) -> bool {
-        for tile in &self.tiles {
-            if tile.get_letter() == tile_letter {
-                return true;
-            }
-        }
-        false
+        return self
+            .tiles
+            .iter()
+            .any(|tile| tile.get_letter() == tile_letter);
     }
 
     /// Takes tiles out of hand and returns them
